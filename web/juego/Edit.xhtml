@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="JuegoEditDlg" widgetVar="JuegoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditJuegoTitle}">
+            <h:form id="JuegoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{juegoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditJuegoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{juegoController.selected.id}" title="#{bundle.EditJuegoTitle_id}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditJuegoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{juegoController.selected.nombre}" title="#{bundle.EditJuegoTitle_nombre}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditJuegoLabel_pegi}" for="pegi" />
+                        <p:inputText id="pegi" value="#{juegoController.selected.pegi}" title="#{bundle.EditJuegoTitle_pegi}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_pegi}"/>
+                        <p:outputLabel value="#{bundle.EditJuegoLabel_modoJuego}" for="modoJuego" />
+                        <p:inputText id="modoJuego" value="#{juegoController.selected.modoJuego}" title="#{bundle.EditJuegoTitle_modoJuego}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_modoJuego}"/>
+                        <p:outputLabel value="#{bundle.EditJuegoLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{juegoController.selected.precio}" title="#{bundle.EditJuegoTitle_precio}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_precio}"/>
+                        <p:outputLabel value="#{bundle.EditJuegoLabel_plataforma}" for="plataforma" />
+                        <p:selectOneMenu id="plataforma" value="#{juegoController.selected.plataforma}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_plataforma}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{plataformaController.itemsAvailableSelectOne}"
+                                           var="plataformaItem"
+                                           itemValue="#{plataformaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{juegoController.update}" value="#{bundle.Save}" update="display,:JuegoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'JuegoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="JuegoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

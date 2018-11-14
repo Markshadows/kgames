@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompraViewDlg" widgetVar="CompraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCompraTitle}">
+            <h:form id="CompraViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{compraController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCompraLabel_id}"/>
+                        <h:outputText value="#{compraController.selected.id}" title="#{bundle.ViewCompraTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCompraLabel_precio}"/>
+                        <h:outputText value="#{compraController.selected.precio}" title="#{bundle.ViewCompraTitle_precio}"/>
+                        <h:outputText value="#{bundle.ViewCompraLabel_fecha}"/>
+                        <h:outputText value="#{compraController.selected.fecha}" title="#{bundle.ViewCompraTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCompraLabel_total}"/>
+                        <h:outputText value="#{compraController.selected.total}" title="#{bundle.ViewCompraTitle_total}"/>
+                        <h:outputText value="#{bundle.ViewCompraLabel_cliente}"/>
+                        <h:outputText value="#{compraController.selected.cliente}" title="#{bundle.ViewCompraTitle_cliente}"/>
+                        <h:outputText value="#{bundle.ViewCompraLabel_juego}"/>
+                        <h:outputText value="#{compraController.selected.juego}" title="#{bundle.ViewCompraTitle_juego}"/>
+                        <h:outputText value="#{bundle.ViewCompraLabel_pago}"/>
+                        <h:outputText value="#{compraController.selected.pago}" title="#{bundle.ViewCompraTitle_pago}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CompraViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
