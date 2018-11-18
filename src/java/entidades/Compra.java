@@ -21,11 +21,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Duoc
+ * @author Desconocido
  */
 @Entity
 @Table(name = "compra")
@@ -35,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Compra.findById", query = "SELECT c FROM Compra c WHERE c.id = :id")
     , @NamedQuery(name = "Compra.findByPrecio", query = "SELECT c FROM Compra c WHERE c.precio = :precio")
     , @NamedQuery(name = "Compra.findByFecha", query = "SELECT c FROM Compra c WHERE c.fecha = :fecha")
-    , @NamedQuery(name = "Compra.findByTotal", query = "SELECT c FROM Compra c WHERE c.total = :total")})
+    , @NamedQuery(name = "Compra.findByTotal", query = "SELECT c FROM Compra c WHERE c.total = :total")
+    , @NamedQuery(name = "Compra.findByEstado", query = "SELECT c FROM Compra c WHERE c.estado = :estado")})
 public class Compra implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,6 +59,11 @@ public class Compra implements Serializable {
     @NotNull
     @Column(name = "total")
     private int total;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "estado")
+    private String estado;
     @JoinColumn(name = "cliente", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Cliente cliente;
@@ -74,11 +81,12 @@ public class Compra implements Serializable {
         this.id = id;
     }
 
-    public Compra(Integer id, int precio, Date fecha, int total) {
+    public Compra(Integer id, int precio, Date fecha, int total, String estado) {
         this.id = id;
         this.precio = precio;
         this.fecha = fecha;
         this.total = total;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -111,6 +119,14 @@ public class Compra implements Serializable {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Cliente getCliente() {

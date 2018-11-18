@@ -22,6 +22,13 @@
                         <p:inputText id="modoJuego" value="#{juegoController.selected.modoJuego}" title="#{bundle.EditJuegoTitle_modoJuego}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_modoJuego}"/>
                         <p:outputLabel value="#{bundle.EditJuegoLabel_precio}" for="precio" />
                         <p:inputText id="precio" value="#{juegoController.selected.precio}" title="#{bundle.EditJuegoTitle_precio}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_precio}"/>
+                        <p:outputLabel value="#{bundle.EditJuegoLabel_codigo}" for="codigo" />
+                        <p:selectOneMenu id="codigo" value="#{juegoController.selected.codigo}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_codigo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{codigoController.itemsAvailableSelectOne}"
+                                           var="codigoItem"
+                                           itemValue="#{codigoItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditJuegoLabel_plataforma}" for="plataforma" />
                         <p:selectOneMenu id="plataforma" value="#{juegoController.selected.plataforma}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_plataforma}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

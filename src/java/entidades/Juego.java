@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Duoc
+ * @author Desconocido
  */
 @Entity
 @Table(name = "juego")
@@ -65,6 +65,9 @@ public class Juego implements Serializable {
     private int precio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "juego")
     private List<Compra> compraList;
+    @JoinColumn(name = "codigo", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Codigo codigo;
     @JoinColumn(name = "plataforma", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Plataforma plataforma;
@@ -131,6 +134,14 @@ public class Juego implements Serializable {
 
     public void setCompraList(List<Compra> compraList) {
         this.compraList = compraList;
+    }
+
+    public Codigo getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Codigo codigo) {
+        this.codigo = codigo;
     }
 
     public Plataforma getPlataforma() {

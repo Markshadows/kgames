@@ -20,6 +20,8 @@
                         <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{compraController.selected.fecha}" title="#{bundle.EditCompraTitle_fecha}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditCompraLabel_total}" for="total" />
                         <p:inputText id="total" value="#{compraController.selected.total}" title="#{bundle.EditCompraTitle_total}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_total}"/>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{compraController.selected.estado}" title="#{bundle.EditCompraTitle_estado}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_estado}"/>
                         <p:outputLabel value="#{bundle.EditCompraLabel_cliente}" for="cliente" />
                         <p:selectOneMenu id="cliente" value="#{compraController.selected.cliente}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_cliente}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

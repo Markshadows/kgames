@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TicketEditDlg" widgetVar="TicketEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTicketTitle}">
+            <h:form id="TicketEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ticketController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTicketLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{ticketController.selected.id}" title="#{bundle.EditTicketTitle_id}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditTicketLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{ticketController.selected.descripcion}" title="#{bundle.EditTicketTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.EditTicketLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{ticketController.selected.fecha}" title="#{bundle.EditTicketTitle_fecha}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTicketLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{ticketController.selected.estado}" title="#{bundle.EditTicketTitle_estado}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_estado}"/>
+                        <p:outputLabel value="#{bundle.EditTicketLabel_tipo}" for="tipo" />
+                        <p:selectOneMenu id="tipo" value="#{ticketController.selected.tipo}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_tipo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoTicketController.itemsAvailableSelectOne}"
+                                           var="tipoItem"
+                                           itemValue="#{tipoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTicketLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{ticketController.selected.usuario}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_usuario}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ticketController.update}" value="#{bundle.Save}" update="display,:TicketListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TicketEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TicketEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

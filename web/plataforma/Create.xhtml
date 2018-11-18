@@ -16,8 +16,6 @@
                         <p:inputText id="id" value="#{plataformaController.selected.id}" title="#{bundle.CreatePlataformaTitle_id}" required="true" requiredMessage="#{bundle.CreatePlataformaRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreatePlataformaLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{plataformaController.selected.nombre}" title="#{bundle.CreatePlataformaTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePlataformaRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.CreatePlataformaLabel_descripcion}" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{plataformaController.selected.descripcion}" title="#{bundle.CreatePlataformaTitle_descripcion}" required="true" requiredMessage="#{bundle.CreatePlataformaRequiredMessage_descripcion}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{plataformaController.create}" value="#{bundle.Save}" update="display,:PlataformaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PlataformaCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PlataformaCreateDialog.hide()"/>

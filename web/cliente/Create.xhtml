@@ -28,6 +28,7 @@
                         <p:selectOneMenu id="pago" value="#{clienteController.selected.pago}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_pago}">
                             <f:selectItems value="#{pagoController.itemsAvailableSelectOne}"
                                            var="pagoItem"
+                                           itemLabel="#{pagoItem.descripcion}"
                                            itemValue="#{pagoItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>

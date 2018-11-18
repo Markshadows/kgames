@@ -21,11 +21,16 @@
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
                         <p:submenu label="#{bundle.Maintenance}">
+                            <p:menuitem value="Administrador" outcome="/administrador/List.xhtml" />
                             <p:menuitem value="Cliente" outcome="/cliente/List.xhtml" />
+                            <p:menuitem value="Codigo" outcome="/codigo/List.xhtml" />
                             <p:menuitem value="Compra" outcome="/compra/List.xhtml" />
                             <p:menuitem value="Juego" outcome="/juego/List.xhtml" />
                             <p:menuitem value="Pago" outcome="/pago/List.xhtml" />
                             <p:menuitem value="Plataforma" outcome="/plataforma/List.xhtml" />
+                            <p:menuitem value="RespuestaTicket" outcome="/respuestaTicket/List.xhtml" />
+                            <p:menuitem value="Ticket" outcome="/ticket/List.xhtml" />
+                            <p:menuitem value="TipoTicket" outcome="/tipoTicket/List.xhtml" />
                         </p:submenu>
                     </p:menubar>
                 </h:form>

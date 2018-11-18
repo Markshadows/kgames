@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoTicketCreateDlg" widgetVar="TipoTicketCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoTicketTitle}">
+            <h:form id="TipoTicketCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoTicketController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTipoTicketLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{tipoTicketController.selected.id}" title="#{bundle.CreateTipoTicketTitle_id}" required="true" requiredMessage="#{bundle.CreateTipoTicketRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateTipoTicketLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{tipoTicketController.selected.nombre}" title="#{bundle.CreateTipoTicketTitle_nombre}" required="true" requiredMessage="#{bundle.CreateTipoTicketRequiredMessage_nombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoTicketController.create}" value="#{bundle.Save}" update="display,:TipoTicketListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoTicketCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoTicketCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

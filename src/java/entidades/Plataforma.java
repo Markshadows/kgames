@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Duoc
+ * @author Desconocido
  */
 @Entity
 @Table(name = "plataforma")
@@ -33,8 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Plataforma.findAll", query = "SELECT p FROM Plataforma p")
     , @NamedQuery(name = "Plataforma.findById", query = "SELECT p FROM Plataforma p WHERE p.id = :id")
-    , @NamedQuery(name = "Plataforma.findByNombre", query = "SELECT p FROM Plataforma p WHERE p.nombre = :nombre")
-    , @NamedQuery(name = "Plataforma.findByDescripcion", query = "SELECT p FROM Plataforma p WHERE p.descripcion = :descripcion")})
+    , @NamedQuery(name = "Plataforma.findByNombre", query = "SELECT p FROM Plataforma p WHERE p.nombre = :nombre")})
 public class Plataforma implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,11 +47,6 @@ public class Plataforma implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "descripcion")
-    private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plataforma")
     private List<Juego> juegoList;
 
@@ -63,10 +57,9 @@ public class Plataforma implements Serializable {
         this.id = id;
     }
 
-    public Plataforma(Integer id, String nombre, String descripcion) {
+    public Plataforma(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.descripcion = descripcion;
     }
 
     public Integer getId() {
@@ -83,14 +76,6 @@ public class Plataforma implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     @XmlTransient

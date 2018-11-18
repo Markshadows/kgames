@@ -39,12 +39,6 @@
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlataformaTitle_descripcion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descripcion}"/>
-                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{plataformaController.prepareCreate}" update=":PlataformaCreateForm" oncomplete="PF('PlataformaCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PlataformaViewForm" oncomplete="PF('PlataformaViewDialog').show()" disabled="#{empty plataformaController.selected}"/>

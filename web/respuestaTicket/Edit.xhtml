@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RespuestaTicketEditDlg" widgetVar="RespuestaTicketEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRespuestaTicketTitle}">
+            <h:form id="RespuestaTicketEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{respuestaTicketController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRespuestaTicketLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{respuestaTicketController.selected.id}" title="#{bundle.EditRespuestaTicketTitle_id}" required="true" requiredMessage="#{bundle.EditRespuestaTicketRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditRespuestaTicketLabel_respuesta}" for="respuesta" />
+                        <p:inputText id="respuesta" value="#{respuestaTicketController.selected.respuesta}" title="#{bundle.EditRespuestaTicketTitle_respuesta}" required="true" requiredMessage="#{bundle.EditRespuestaTicketRequiredMessage_respuesta}"/>
+                        <p:outputLabel value="#{bundle.EditRespuestaTicketLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{respuestaTicketController.selected.fecha}" title="#{bundle.EditRespuestaTicketTitle_fecha}" required="true" requiredMessage="#{bundle.EditRespuestaTicketRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRespuestaTicketLabel_administrador}" for="administrador" />
+                        <p:selectOneMenu id="administrador" value="#{respuestaTicketController.selected.administrador}" required="true" requiredMessage="#{bundle.EditRespuestaTicketRequiredMessage_administrador}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{administradorController.itemsAvailableSelectOne}"
+                                           var="administradorItem"
+                                           itemValue="#{administradorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRespuestaTicketLabel_ticket}" for="ticket" />
+                        <p:selectOneMenu id="ticket" value="#{respuestaTicketController.selected.ticket}" required="true" requiredMessage="#{bundle.EditRespuestaTicketRequiredMessage_ticket}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ticketController.itemsAvailableSelectOne}"
+                                           var="ticketItem"
+                                           itemValue="#{ticketItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{respuestaTicketController.update}" value="#{bundle.Save}" update="display,:RespuestaTicketListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RespuestaTicketEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RespuestaTicketEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Duoc
+ * @author Desconocido
  */
 @Stateless
 public class JuegoFacade extends AbstractFacade<Juego> {

@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Duoc
+ * @author Desconocido
  */
 @Entity
 @Table(name = "cliente")
@@ -81,6 +81,8 @@ public class Cliente implements Serializable {
     private Pago pago;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Compra> compraList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<Ticket> ticketList;
 
     public Cliente() {
     }
@@ -161,6 +163,15 @@ public class Cliente implements Serializable {
 
     public void setCompraList(List<Compra> compraList) {
         this.compraList = compraList;
+    }
+
+    @XmlTransient
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 
     @Override
