@@ -24,17 +24,16 @@
                         <p:inputText id="direccion" value="#{clienteController.selected.direccion}" title="#{bundle.CreateClienteTitle_direccion}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_direccion}"/>
                         <p:outputLabel value="#{bundle.CreateClienteLabel_nacimiento}" for="nacimiento" />
                         <p:calendar id="nacimiento" pattern="MM/dd/yyyy" value="#{clienteController.selected.nacimiento}" title="#{bundle.EditClienteTitle_nacimiento}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nacimiento}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateClienteLabel_pago}" for="pago" />
-                        <p:selectOneMenu id="pago" value="#{clienteController.selected.pago}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_pago}">
-                            <f:selectItems value="#{pagoController.itemsAvailableSelectOne}"
-                                           var="pagoItem"
-                                           itemLabel="#{pagoItem.descripcion}"
-                                           itemValue="#{pagoItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateClienteLabel_username}" for="username" />
                         <p:inputText id="username" value="#{clienteController.selected.username}" title="#{bundle.CreateClienteTitle_username}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_username}"/>
                         <p:outputLabel value="#{bundle.CreateClienteLabel_password}" for="password" />
                         <p:inputText id="password" value="#{clienteController.selected.password}" title="#{bundle.CreateClienteTitle_password}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_password}"/>
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_pago}" for="pago" />
+                        <p:selectOneMenu id="pago" value="#{clienteController.selected.pago}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_pago}">
+                            <f:selectItems value="#{pagoController.itemsAvailableSelectOne}"
+                                           var="pagoItem"
+                                           itemValue="#{pagoItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{clienteController.create}" value="#{bundle.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ClienteCreateDialog.hide()"/>

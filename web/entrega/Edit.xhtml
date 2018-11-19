@@ -12,14 +12,21 @@
             <h:form id="EntregaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{entregaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditEntregaLabel_idkeyCod}" for="idkeyCod" />
-                        <p:inputText id="idkeyCod" value="#{entregaController.selected.idkeyCod}" title="#{bundle.EditEntregaTitle_idkeyCod}" required="true" requiredMessage="#{bundle.EditEntregaRequiredMessage_idkeyCod}"/>
+                        <p:outputLabel value="#{bundle.EditEntregaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{entregaController.selected.id}" title="#{bundle.EditEntregaTitle_id}" required="true" requiredMessage="#{bundle.EditEntregaRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditEntregaLabel_idPago}" for="idPago" />
                         <p:selectOneMenu id="idPago" value="#{entregaController.selected.idPago}" required="true" requiredMessage="#{bundle.EditEntregaRequiredMessage_idPago}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{compraController.itemsAvailableSelectOne}"
                                            var="idPagoItem"
                                            itemValue="#{idPagoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEntregaLabel_idkeyCod}" for="idkeyCod" />
+                        <p:selectOneMenu id="idkeyCod" value="#{entregaController.selected.idkeyCod}" required="true" requiredMessage="#{bundle.EditEntregaRequiredMessage_idkeyCod}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{codigoController.itemsAvailableSelectOne}"
+                                           var="idkeyCodItem"
+                                           itemValue="#{idkeyCodItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{entregaController.update}" value="#{bundle.Save}" update="display,:EntregaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EntregaEditDialog');"/>

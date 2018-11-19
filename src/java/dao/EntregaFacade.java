@@ -6,13 +6,15 @@
 package dao;
 
 import entidades.Entrega;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
- * @author Mirtza Verdugo
+ * @author Miguel
  */
 @Stateless
 public class EntregaFacade extends AbstractFacade<Entrega> {
@@ -28,5 +30,11 @@ public class EntregaFacade extends AbstractFacade<Entrega> {
     public EntregaFacade() {
         super(Entrega.class);
     }
-    
+
+    public List<Entrega> keycod() {
+
+        Query query = em.createQuery(
+                "SELECT a FROM Entrega a JOIN a.idkeyCod u");
+        return query.getResultList();
+    }
 }

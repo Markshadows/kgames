@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Desconocido
+ * @author Miguel
  */
 @Entity
 @Table(name = "compra")
@@ -43,9 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Compra.findByTotal", query = "SELECT c FROM Compra c WHERE c.total = :total")
     , @NamedQuery(name = "Compra.findByEstado", query = "SELECT c FROM Compra c WHERE c.estado = :estado")})
 public class Compra implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPago")
-    private List<Entrega> entregaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -80,6 +77,8 @@ public class Compra implements Serializable {
     @JoinColumn(name = "pago", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Pago pago;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPago")
+    private List<Entrega> entregaList;
 
     public Compra() {
     }
@@ -160,6 +159,15 @@ public class Compra implements Serializable {
         this.pago = pago;
     }
 
+    @XmlTransient
+    public List<Entrega> getEntregaList() {
+        return entregaList;
+    }
+
+    public void setEntregaList(List<Entrega> entregaList) {
+        this.entregaList = entregaList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -183,15 +191,6 @@ public class Compra implements Serializable {
     @Override
     public String toString() {
         return "entidades.Compra[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public List<Entrega> getEntregaList() {
-        return entregaList;
-    }
-
-    public void setEntregaList(List<Entrega> entregaList) {
-        this.entregaList = entregaList;
     }
     
 }

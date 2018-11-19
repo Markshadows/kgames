@@ -24,14 +24,12 @@
                         <p:selectOneMenu id="tipo" value="#{ticketController.selected.tipo}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_tipo}">
                             <f:selectItems value="#{tipoTicketController.itemsAvailableSelectOne}"
                                            var="tipoItem"
-                                           itemLabel="#{tipoItem.nombre}"
                                            itemValue="#{tipoItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTicketLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{ticketController.selected.usuario}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_usuario}">
                             <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
-                                           itemLabel="#{usuarioItem.nombre.concat(' ').concat(usuarioItem.apellido)}"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>

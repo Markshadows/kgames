@@ -24,6 +24,10 @@
                         <p:inputText id="direccion" value="#{clienteController.selected.direccion}" title="#{bundle.EditClienteTitle_direccion}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_direccion}"/>
                         <p:outputLabel value="#{bundle.EditClienteLabel_nacimiento}" for="nacimiento" />
                         <p:calendar id="nacimiento" pattern="MM/dd/yyyy" value="#{clienteController.selected.nacimiento}" title="#{bundle.EditClienteTitle_nacimiento}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nacimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditClienteLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{clienteController.selected.username}" title="#{bundle.EditClienteTitle_username}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_username}"/>
+                        <p:outputLabel value="#{bundle.EditClienteLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{clienteController.selected.password}" title="#{bundle.EditClienteTitle_password}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_password}"/>
                         <p:outputLabel value="#{bundle.EditClienteLabel_pago}" for="pago" />
                         <p:selectOneMenu id="pago" value="#{clienteController.selected.pago}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_pago}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -31,10 +35,6 @@
                                            var="pagoItem"
                                            itemValue="#{pagoItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditClienteLabel_username}" for="username" />
-                        <p:inputText id="username" value="#{clienteController.selected.username}" title="#{bundle.EditClienteTitle_username}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_username}"/>
-                        <p:outputLabel value="#{bundle.EditClienteLabel_password}" for="password" />
-                        <p:inputText id="password" value="#{clienteController.selected.password}" title="#{bundle.EditClienteTitle_password}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_password}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{clienteController.update}" value="#{bundle.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClienteEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ClienteEditDialog.hide()"/>

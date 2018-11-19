@@ -22,14 +22,12 @@
                         <p:selectOneMenu id="administrador" value="#{respuestaTicketController.selected.administrador}" required="true" requiredMessage="#{bundle.EditRespuestaTicketRequiredMessage_administrador}">
                             <f:selectItems value="#{administradorController.itemsAvailableSelectOne}"
                                            var="administradorItem"
-                                           itemLabel="#{administradorItem.nombre}"
                                            itemValue="#{administradorItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateRespuestaTicketLabel_ticket}" for="ticket" />
                         <p:selectOneMenu id="ticket" value="#{respuestaTicketController.selected.ticket}" required="true" requiredMessage="#{bundle.EditRespuestaTicketRequiredMessage_ticket}">
                             <f:selectItems value="#{ticketController.itemsAvailableSelectOne}"
                                            var="ticketItem"
-                                           itemLabel="#{ticketItem.descripcion}"
                                            itemValue="#{ticketItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>

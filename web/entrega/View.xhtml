@@ -12,10 +12,12 @@
             <h:form id="EntregaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{entregaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEntregaLabel_idkeyCod}"/>
-                        <h:outputText value="#{entregaController.selected.idkeyCod}" title="#{bundle.ViewEntregaTitle_idkeyCod}"/>
+                        <h:outputText value="#{bundle.ViewEntregaLabel_id}"/>
+                        <h:outputText value="#{entregaController.selected.id}" title="#{bundle.ViewEntregaTitle_id}"/>
                         <h:outputText value="#{bundle.ViewEntregaLabel_idPago}"/>
                         <h:outputText value="#{entregaController.selected.idPago}" title="#{bundle.ViewEntregaTitle_idPago}"/>
+                        <h:outputText value="#{bundle.ViewEntregaLabel_idkeyCod}"/>
+                        <h:outputText value="#{entregaController.selected.idkeyCod}" title="#{bundle.ViewEntregaTitle_idkeyCod}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="EntregaViewDialog.hide()"/>
                 </h:panelGroup>

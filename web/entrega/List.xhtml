@@ -19,7 +19,7 @@
                     <p:dataTable id="datalist" value="#{entregaController.items}" var="item"
                                  selectionMode="single" selection="#{entregaController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.idkeyCod}"
+                                 rowKey="#{item.id}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
@@ -29,15 +29,21 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEntregaTitle_idkeyCod}"/>
+                                <h:outputText value="#{bundle.ListEntregaTitle_id}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idkeyCod}"/>
+                            <h:outputText value="#{item.id}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEntregaTitle_idPago}"/>
                             </f:facet>
                             <h:outputText value="#{item.idPago}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntregaTitle_idkeyCod}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idkeyCod.codigo}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{entregaController.prepareCreate}" update=":EntregaCreateForm" oncomplete="PF('EntregaCreateDialog').show()"/>
