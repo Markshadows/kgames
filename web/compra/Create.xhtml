@@ -26,7 +26,7 @@
                         <p:selectOneMenu id="cliente" value="#{compraController.selected.cliente}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_cliente}">
                             <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
                                            var="clienteItem"
-                                           itemLabel="#{clienteItem.nombre}"
+                                           itemLabel="#{clienteItem.nombre.concat(' ').concat(clienteItem.apellido)}"
                                            itemValue="#{clienteItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateCompraLabel_juego}" for="juego" />
@@ -40,7 +40,7 @@
                         <p:selectOneMenu id="pago" value="#{compraController.selected.pago}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_pago}">
                             <f:selectItems value="#{pagoController.itemsAvailableSelectOne}"
                                            var="pagoItem"
-                                           itemLabel="#{pagoItem.descripcion}"
+                                           itemLabel="${pagoItem.descripcion}"
                                            itemValue="#{pagoItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>

@@ -31,7 +31,7 @@
                         <p:selectOneMenu id="usuario" value="#{ticketController.selected.usuario}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_usuario}">
                             <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
-                                           itemLabel="#{usuarioItem.nombre}"
+                                           itemLabel="#{usuarioItem.nombre.concat(' ').concat(usuarioItem.apellido)}"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>

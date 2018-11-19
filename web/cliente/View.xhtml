@@ -28,6 +28,10 @@
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewClienteLabel_pago}"/>
                         <h:outputText value="#{clienteController.selected.pago}" title="#{bundle.ViewClienteTitle_pago}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_username}"/>
+                        <h:outputText value="#{clienteController.selected.username}" title="#{bundle.ViewClienteTitle_username}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_password}"/>
+                        <h:outputText value="#{clienteController.selected.password}" title="#{bundle.ViewClienteTitle_password}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ClienteViewDialog.hide()"/>
                 </h:panelGroup>

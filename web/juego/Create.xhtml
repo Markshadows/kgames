@@ -26,12 +26,14 @@
                         <p:selectOneMenu id="codigo" value="#{juegoController.selected.codigo}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_codigo}">
                             <f:selectItems value="#{codigoController.itemsAvailableSelectOne}"
                                            var="codigoItem"
+                                           itemLabel="#{codigoItem.codigo}"
                                            itemValue="#{codigoItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateJuegoLabel_plataforma}" for="plataforma" />
                         <p:selectOneMenu id="plataforma" value="#{juegoController.selected.plataforma}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_plataforma}">
                             <f:selectItems value="#{plataformaController.itemsAvailableSelectOne}"
                                            var="plataformaItem"
+                                           itemLabel="#{plataformaItem.nombre}"
                                            itemValue="#{plataformaItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>

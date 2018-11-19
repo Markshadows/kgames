@@ -5,7 +5,7 @@
  */
 package dao;
 
-import entidades.Cliente;
+import entidades.Entrega;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Mirtza Verdugo
  */
 @Stateless
-public class ClienteFacade extends AbstractFacade<Cliente> {
+public class EntregaFacade extends AbstractFacade<Entrega> {
 
     @PersistenceContext(unitName = "kgamesPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
         return em;
     }
 
-    public ClienteFacade() {
-        super(Cliente.class);
+    public EntregaFacade() {
+        super(Entrega.class);
     }
     
 }

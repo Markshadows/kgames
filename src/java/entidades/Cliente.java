@@ -45,6 +45,17 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cliente.findByNacimiento", query = "SELECT c FROM Cliente c WHERE c.nacimiento = :nacimiento")})
 public class Cliente implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "username")
+    private String username;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "password")
+    private String password;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -99,6 +110,21 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
         this.nacimiento = nacimiento;
     }
+
+    public Cliente(String username, String password, Integer id, String nombre, String apellido, String correo, String direccion, Date nacimiento, Pago pago, List<Compra> compraList, List<Ticket> ticketList) {
+        this.username = username;
+        this.password = password;
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.direccion = direccion;
+        this.nacimiento = nacimiento;
+        this.pago = pago;
+        this.compraList = compraList;
+        this.ticketList = ticketList;
+    }
+    
 
     public Integer getId() {
         return id;
@@ -197,6 +223,22 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "entidades.Cliente[ id=" + id + " ]";
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }
