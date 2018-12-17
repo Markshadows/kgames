@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
-    <Scope Scope="Project"/>
+    <Scope Scope="Project">
+        <Node id="cliente/Registrarse.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="compra/View.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="welcomePrimefaces.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="plataforma/Create.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="compra/List.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="compra/Edit.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="administrador/Create.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="juego/Create.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="index.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="cliente/Edit.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="respuestaTicket/List.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="entrega/List.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="tipoTicket/Edit.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="respuestaTicket/View.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="respuestaTicket/Create.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="login.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="entrega/View.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="codigo/Create.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="compra/Create.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="ticket/Create.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="administrador/Edit.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="juego/Edit.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="ticket/Edit.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="plataforma/View.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="entrega/Edit.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="juego/View.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="codigo/Edit.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="codigo/View.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="juego/List.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="respuestaTicket/Edit.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="pago/List.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="plataforma/List.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="codigo/List.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="administrador/View.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="pago/Edit.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="pago/View.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="template.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="administrador/List.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="tipoTicket/View.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="entrega/Create.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="tipoTicket/List.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="ticket/View.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="cliente/List.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="cliente/View.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="tipoTicket/Create.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="plataforma/Edit.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="pago/Create.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="ticket/List.xhtml" x="1400" y="600" zoom="true"/>
+    </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

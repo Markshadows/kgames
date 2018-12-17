@@ -3,6 +3,7 @@ package controlador;
 import entidades.Cliente;
 import controlador.util.JsfUtil;
 import controlador.util.JsfUtil.PersistAction;
+import controlador.util.Strings;
 import dao.ClienteFacade;
 
 import java.io.Serializable;
@@ -10,17 +11,20 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("clienteController")
-@SessionScoped
+@ManagedBean(name="clienteController")
+@RequestScoped
 public class ClienteController implements Serializable {
 
     @EJB
@@ -29,6 +33,12 @@ public class ClienteController implements Serializable {
     private Cliente selected;
 
     public ClienteController() {
+    }
+    
+    @PostConstruct
+    public void init() {
+        selected = new Cliente();
+        //initializeEmbeddableKey();
     }
 
     public Cliente getSelected() {
@@ -48,11 +58,17 @@ public class ClienteController implements Serializable {
     private ClienteFacade getFacade() {
         return ejbFacade;
     }
-
-    public Cliente prepareCreate() {
-        selected = new Cliente();
-        initializeEmbeddableKey();
-        return selected;
+    
+    public String login() {
+                     String pagina = Strings.paginaLogin;
+            selected = getFacade().login(selected.getUsername(), selected.getPassword());
+            if (selected != null) {
+                pagina = Strings.paginaInicio;
+            } else {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage(Strings.mensajeError + " Usuario o contraseña incorrecta"));
+            }
+        return pagina;
     }
 
     public void create() {
