@@ -3,6 +3,7 @@ package controlador;
 import entidades.Cliente;
 import controlador.util.JsfUtil;
 import controlador.util.JsfUtil.PersistAction;
+import controlador.util.SessionUtil;
 import controlador.util.Strings;
 import dao.ClienteFacade;
 
@@ -22,9 +23,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.servlet.http.HttpSession;
 
-@ManagedBean(name="clienteController")
-@RequestScoped
+@ManagedBean(name = "clienteController")
+@SessionScoped
 public class ClienteController implements Serializable {
 
     @EJB
@@ -34,7 +36,7 @@ public class ClienteController implements Serializable {
 
     public ClienteController() {
     }
-    
+
     @PostConstruct
     public void init() {
         selected = new Cliente();
@@ -58,17 +60,26 @@ public class ClienteController implements Serializable {
     private ClienteFacade getFacade() {
         return ejbFacade;
     }
-    
+
     public String login() {
-                     String pagina = Strings.paginaLogin;
-            selected = getFacade().login(selected.getUsername(), selected.getPassword());
-            if (selected != null) {
-                pagina = Strings.paginaInicio;
-            } else {
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage(Strings.mensajeError + " Usuario o contraseña incorrecta"));
-            }
+        String pagina = Strings.paginaLogin;
+        selected = getFacade().login(selected.getUsername(), selected.getPassword());
+        if (selected != null) {
+            HttpSession session = SessionUtil.getSession();
+            session.setAttribute("username", selected);
+            pagina = Strings.paginaInicio;
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(Strings.mensajeError + " Usuario o contraseña incorrecta"));
+        }
         return pagina;
+    }
+
+    public String cerrarSesion() {
+        selected = new Cliente();
+        HttpSession session = SessionUtil.getSession();
+        session.invalidate();
+        return "index";
     }
 
     public void create() {
@@ -80,7 +91,13 @@ public class ClienteController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ClienteUpdated"));
+        System.out.println(selected.toString());
     }
+
+    /*public String cargarClase() {
+        
+        selected = getFacade().find(this);
+    }*/
 
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ClienteDeleted"));

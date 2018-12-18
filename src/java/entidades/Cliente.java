@@ -226,7 +226,9 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Cliente[ id=" + id + " ]";
+        return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", direccion=" + direccion + ", nacimiento=" + nacimiento + ", username=" + username + ", password=" + password + ", pago=" + pago + ", compraList=" + compraList + ", ticketList=" + ticketList + '}';
     }
+
+    
     
 }

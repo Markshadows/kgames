@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div class="container mt-5">
+            <p:growl id="growl" showDetail="true" sticky="true" />  
+            <h:form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputNombre">Nombre: </label>
+                        <p:inputText value="#{clienteController.selected.nombre}" />                        
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputApellido">Apellido: </label>
+                        <p:inputText value="#{username.apellido}" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="email">Email actual: </label>
+                        <p:inputText type="email" styleClass="form-control" id="inputEmail4" value="#{username.correo}" requiredMessage="#{bundle.CreateClienteRequiredMessage_nombre}"/>
+                        <label for="inputEmail4">Email nuevo </label>
+                        <p:inputText type="email" styleClass="form-control" id="inputEmail" value="#{clienteController.selected.correo}" requiredMessage="#{bundle.CreateClienteRequiredMessage_nombre}"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputApellido">Fecha Nacimiento:  </label>
+
+                        <p:inputText  value="#{username.nacimiento}"> 
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </p:inputText>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDireccion">Dirección</label>
+                    <p:inputText type="text" styleClass="form-control" id="inputDireccion" placeholder="Concha y Toro" value="#{username.direccion  }"/>
+                </div>
+                <div class="form-group col-md-4">
+                    <p:outputLabel for="pago" value="Tipo de pago: " />
+                    <p:selectOneMenu id="pago" value="#{clienteController.selected.pago}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_pago}">
+                        <f:selectItems value="#{pagoController.items}"
+                                       var="pagoItem"
+                                       itemLabel="#{pagoItem.descripcion}"
+                                       itemValue="#{pagoItem}"/>
+                    </p:selectOneMenu>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputNombreUsuario">Nombre de usuario</label>
+                        <p:inputText type="text" styleClass="form-control" id="inputNombreUsuario" placeholder="Nombre333" value="#{username.username}"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputContrasena">Contraseña</label>
+                        <p:inputText type="text" styleClass="form-control" id="inputContrasena" placeholder="***********" value="#{username.password}"/>
+                    </div>
+                </div>
+                <h:outputText value="#{username.id}" ></h:outputText>
+                <p:commandButton action="#{clienteController.update}" value="Modificar"  update="growl"/>
+                
+            </h:form>
+        </div>
+
+
+    </h:body>
+</html>
+

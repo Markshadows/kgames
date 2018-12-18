@@ -1,51 +1,155 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
-        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <title>K - Games</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <!-- jQuery library -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </h:head>
     <h:body>
-        Hello from Facelets
-        #{clienteController.selected.nombre}
-        <br />
-        <h:link outcome="/cliente/Registrarse" value="Registrarse" />
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="/administrador/List" value="Show All Administrador Items"/>
-        <br />
-        <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
-        <br />
-        <h:link outcome="/codigo/List" value="Show All Codigo Items"/>
-        <br />
-        <h:link outcome="/compra/List" value="Show All Compra Items"/>
-        <br />
-        <h:link outcome="/entrega/List" value="Show All Entrega Items"/>
-        <br />
-        <h:link outcome="/juego/List" value="Show All Juego Items"/>
-        <br />
-        <h:link outcome="/pago/List" value="Show All Pago Items"/>
-        <br />
-        <h:link outcome="/plataforma/List" value="Show All Plataforma Items"/>
-        <br />
-        <h:link outcome="/respuestaTicket/List" value="Show All RespuestaTicket Items"/>
-        <br />
-        <h:link outcome="/ticket/List" value="Show All Ticket Items"/>
-        <br />
-        <h:link outcome="/tipoTicket/List" value="Show All TipoTicket Items"/>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <!-- INICIO Navbar que contiene el login, se usara otro nav var como barra de navegacion. -->
+                    <nav class="navbar navbar-inverse">
+                        <c:choose>
+                            <c:when test="#{empty username.nombre}">
+                                <div class="container-fluid">
+                                    <div class="navbar-nav">
+                                        <a class="navbar-inverse" href="#"><img  src="public/img/wow.png" align="middle" border="3" width="45" height="45"></img></a>
+                                    </div>
+                                    <div class="navbar-nav navbar-right">
+                                        <h:form>
+                                            <p:commandButton styleClass="btn btn-success" action="#" value="Registrate" ></p:commandButton>
+                                        </h:form>
+                                    </div>
+                                    <div class="navbar-nav navbar-right">
+                                        <h:form>
+                                            <p:growl id="growl"  showDetail="true" sticky="true" />  
+                                            <p:inputText placeholder="Usuario" value="#{clienteController.selected.username}" />
+                                            <p:inputText placeholder="Contraseña" value="#{clienteController.selected.password}"/>
+                                            <p:commandButton styleClass="btn btn-alert" action="#{clienteController.login}" value="Iniciar Sesión" ajax="false"/>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="container-fluid">
+                                    <div class="navbar-nav ">
+                                        <a class="navbar-inverse" href="#"><img src="public/img/wow.png" align="middle"  width="35" height="35"></img></a>
+                                    </div>
+                                    <div class="navbar-nav navbar-right">
+                                        <h:form styleClass="form-horizontal">
+                                            <li>
+                                                <p:commandLink action="#{clienteController.cerrarSesion}" ajax="false" style="margin-right:20px; color:#ffffff">
+                                                    <h:outputText value="Cerrar" />
+                                                </p:commandLink>                                                
+                                            </li>
+                                        </h:form>
+                                        <h:form styleClass="form-horizontal">
+                                            <li>
+                                                <p:button outcome="cliente/Perfil" style="margin-right:20px; color:#ffffff">
+                                                    <h:outputText value="Perfil" />
+                                                </p:button>                                                
+                                            </li>
+                                        </h:form>
+                                    </div>
+                                    <div class="navbar-nav navbar-right">
+                                        <h:outputText style="color:#ffffff" class="text-white" value="Bienvenido: #{username.nombre} #{username.apellido}"></h:outputText>
+                                    </div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </nav>
+                    <!-- FINAL Navbar que contiene el login, se usara otro nav var como barra de navegacion. -->
+
+                    <!-- INICIO GALERIA DE FOTOS -->
+                    <p:galleria value="#{imagesView.images}" var="image" panelWidth="1150" panelHeight="313" showCaption="true">
+                        <p:graphicImage   library="images" name="#{image}"/>
+                    </p:galleria>
+                    <!-- FIN GALERIA DE FOTOS-->
+
+                    <!-- INICIO NAVBAR con juegos-->
+                    <nav class="navbar navbar-inverse">
+                        <div class="container-fluid">
+                            <ul class="nav navbar-nav">                           
+                                <li><a href="#">PS4</a></li>
+                                <li><a href="#">PS3</a></li>
+                                <li><a href="#">PSVita</a></li>
+                                <li><a href="#">XOne</a></li>
+                                <li><a href="#">Xbox 360</a></li>
+                                <li><a href="#">WiiU</a></li>
+                                <li><a href="#">3DS</a></li>
+                                <li><a href="#">SWITCH</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- FIN NAVBAR con juegos-->
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+        <!-- DIV inferior de contenido -->     
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <!-- Imagen de banner izquierdo, puede ser publicidad -->
+                            <img src="public/img/lateral.png" class="img-thumbnail"></img>
+                        </div>
+
+
+                        <div class="col-sm-9">
+                            <!-- Aca tenemos contenido de imagenes en forma de catalogo -->
+
+                            <div class="row">
+                                <h:form>
+                                    <c:forEach var="item" items="#{juegoController.items}" > 
+                                        <div class="col-sm-6 col-md-3">
+                                            <img src="public/img/lateral.png" data-toggle="modal" class="thumbnail" data-target="#myModal"  width="200" height="200"></img>
+                                            <!-- INICIO Contenido del modal de la foto-->
+                                <p:button outcome="compra/Detalle" value="Comprar" style="margin-right:20px; color:#ffffff" >
+                                            </p:button> 
+                                            <!-- FIN Contenido del modal de la foto-->
+                                        </div>
+                                    </c:forEach>
+                                </h:form>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2018 Copyright:
+                <a href="https://mdbootstrap.com/education/bootstrap/"> DUOC-UC</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
     </h:body>
-
-
-
-
-
-
-
-
-
-
-
 </html>
 
