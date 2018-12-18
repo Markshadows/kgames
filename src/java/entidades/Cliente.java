@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Miguel
+ * @author Desconocido
  */
 @Entity
 @Table(name = "cliente")
@@ -226,9 +226,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", direccion=" + direccion + ", nacimiento=" + nacimiento + ", username=" + username + ", password=" + password + ", pago=" + pago + ", compraList=" + compraList + ", ticketList=" + ticketList + '}';
+        return "entidades.Cliente[ id=" + id + " ]";
     }
-
-    
     
 }

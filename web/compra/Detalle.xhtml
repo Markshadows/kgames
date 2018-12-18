@@ -2,12 +2,225 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>K - Games</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <!-- jQuery library -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </h:head>
     <h:body>
-        <p:inputText value="#{juegoController.selected.nombre}" /> 
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <!-- INICIO Navbar que contiene el login, se usara otro nav var como barra de navegacion. -->
+                    <nav class="navbar navbar-inverse">
+                        <c:choose>
+                            <c:when test="#{empty username.nombre}">
+                                <div class="container-fluid">
+                                    <div class="navbar-nav">
+                                        <a class="navbar-inverse" href="#"><img  src="../public/img/wow.png" align="middle" border="3" width="45" height="45"></img></a>
+                                    </div>
+                                    <div class="navbar-nav navbar-right">
+                                        <h:form>
+                                            <p:commandButton styleClass="btn btn-success" action="#" value="Registrate" ></p:commandButton>
+                                        </h:form>
+                                    </div>
+                                    <div class="navbar-nav navbar-right">
+                                        <h:form>
+                                            <p:growl id="growl"  showDetail="true" sticky="true" />  
+                                            <p:inputText placeholder="Usuario" value="#{clienteController.selected.username}" />
+                                            <p:inputText placeholder="Contraseña" value="#{clienteController.selected.password}"/>
+                                            <p:commandButton styleClass="btn btn-alert" action="#{clienteController.login}" value="Iniciar Sesión" ajax="false"/>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="container-fluid">
+                                    <div class="navbar-nav ">
+                                        <a class="navbar-inverse" href="#"><img src="public/img/wow.png" align="middle"  width="35" height="35"></img></a>
+                                    </div>
+                                    <div class="navbar-nav navbar-right">
+                                        <h:form styleClass="form-horizontal">
+                                            <li>
+                                                <p:commandLink action="#{clienteController.cerrarSesion}" ajax="false" style="margin-right:20px; color:#ffffff">
+                                                    <h:outputText value="Cerrar" />
+                                                </p:commandLink>                                                
+                                            </li>
+                                        </h:form>
+                                        <h:form styleClass="form-horizontal">
+                                            <li>
+                                                <p:button outcome="/cliente/Perfil" style="margin-right:20px; color:#ffffff">
+                                                    <h:outputText value="Perfil" />
+                                                </p:button>                                                
+                                            </li>
+                                        </h:form>
+                                    </div>
+                                    <div class="navbar-nav navbar-right">
+                                        <h:outputText style="color:#ffffff" class="text-white" value="Bienvenido: #{username.nombre} #{username.apellido}"></h:outputText>
+                                    </div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </nav>
+                    <!-- FINAL Navbar que contiene el login, se usara otro nav var como barra de navegacion. -->
+
+                    <!-- INICIO GALERIA DE FOTOS -->
+                    <p:galleria value="#{imagesView.images}" var="image" panelWidth="1150" panelHeight="313" showCaption="true">
+                        <p:graphicImage library="images" name="#{image}" width="1150" height="313"/>
+                    </p:galleria>
+                    <!-- FIN GALERIA DE FOTOS-->
+
+                    <!-- INICIO NAVBAR con juegos-->
+                    <nav class="navbar navbar-inverse">
+                        <div class="container-fluid">
+                            <ul class="nav navbar-nav">                           
+                                <li><a href="#">PS4</a></li>
+                                <li><a href="#">PS3</a></li>
+                                <li><a href="#">PSVita</a></li>
+                                <li><a href="#">XOne</a></li>
+                                <li><a href="#">Xbox 360</a></li>
+                                <li><a href="#">WiiU</a></li>
+                                <li><a href="#">3DS</a></li>
+                                <li><a href="#">SWITCH</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- FIN NAVBAR con juegos-->
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+        <!-- DIV inferior de contenido -->     
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <!-- Imagen de banner izquierdo, puede ser publicidad -->
+                            <img src="../public/img/lateral.png" class="img-thumbnail"></img>
+                        </div>
+
+
+                        <div class="col-sm-9">
+                            <!-- Aca tenemos contenido de imagenes en forma de catalogo -->
+
+                            <div class="row">
+
+                                <h:form id="form">  
+                                    <p:growl id="msgs" showDetail="true" />
+                                    <h3 styleClass="margin-top:0">Detalle del video juego: #{juegoController.selected.nombre}</h3>
+                                    <p:accordionPanel>
+                                        <p:tab title="Descripcion">
+                                            <h:panelGrid columns="2" cellpadding="20">
+
+                                                <div>                                                  
+                                                    <h:outputText value="Resumen: #{juegoController.selected.descripcion}"/>
+                                                </div>
+                                                <p:separator />
+                                                <div>
+                                                    <h:outputText value="Precio: $#{juegoController.selected.precio}"/> 
+                                                </div>
+                                                <p:separator />
+                                                <div>
+                                                    <h:outputText value="Tipo de juego: #{juegoController.selected.modoJuego}"/> 
+                                                </div>
+                                                <p:separator />
+                                                <c:choose>
+                                                    <c:when test="#{empty username.nombre}">
+                                                        <div>                                                                                          
+                                                        </div>
+                                                        <div>
+                                                            <p:commandButton styleClass="btn btn-block btn-succes" value="Debes iniciar sesion para poder comprar" ajax="false"/>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div>
+                                                            <h:form>
+                                                                
+                                                                <p:selectOneMenu  id="cliente" value="#{compraController.selected.cliente}">
+                                                                    <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                                                                   var="clienteItem"
+                                                                                   itemValue="#{clienteItem}"/>
+                                                                </p:selectOneMenu>
+                                                                
+                                                                
+                                                                <p:selectOneMenu  id="juego" value="#{compraController.selected.juego}">
+                                                                    <f:selectItems value="#{juegoController.items}"                                                                                   
+                                                                                   var="clienteItem"
+                                                                                   itemLabel="#{clienteItem.nombre}"
+                                                                                   itemValue="#{clienteItem}"/>
+                                                                </p:selectOneMenu>
+
+                                                                
+                                                                <p:selectOneMenu  id="pago" value="#{compraController.selected.pago}">
+                                                                    <f:selectItems value="#{pagoController.items}"
+                                                                                   var="clienteItem"
+                                                                                   itemValue="#{clienteItem}"/>
+                                                                </p:selectOneMenu>
+                                                                
+
+                                                                <p:inputText id="precio" value="#{juegoController.selected.precio}" />
+                                                                <p:inputText id="total" value="#{juegoController.selected.precio}"/>                                                                                                                         
+                                                                <p:inputText id="fecha" value="#{now}"/>
+                                                                <p:inputText id="estado" value="En proceso"/>
+                                                                <p:commandButton styleClass="btn btn-block" value="Comprar" action="#{compraController.create}" onclick="PF('#{juegoController.selected.nombre}').show();"></p:commandButton> 
+                                                            </h:form>
+                                                        </div>
+                                                        <p:dialog header="Compra del juego #{juegoController.selected.nombre} realizada con exito!" widgetVar="#{juegoController.selected.nombre}" showEffect="explode" hideEffect="bounce" height="100">
+                                                            <div>
+                                                                <h:outputText value="Precio: " />
+                                                                <h:outputText value="$#{juegoController.selected.precio}" />
+                                                                <p:separator />
+                                                                <h:outputText value="Codigo: " />
+                                                                <h:outputText   value="#{juegoController.selected.codigo.codigo}" />
+                                                                <p:separator />
+                                                            </div>
+                                                            <div>
+                                                            </div>
+                                                        </p:dialog>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                            </h:panelGrid>
+                                        </p:tab>
+                                    </p:accordionPanel>
+                                </h:form>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2018 Copyright:
+                <a href="https://mdbootstrap.com/education/bootstrap/"> DUOC-UC</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
     </h:body>
 </html>
+
 

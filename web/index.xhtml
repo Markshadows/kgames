@@ -72,10 +72,9 @@
 
                     </nav>
                     <!-- FINAL Navbar que contiene el login, se usara otro nav var como barra de navegacion. -->
-
                     <!-- INICIO GALERIA DE FOTOS -->
                     <p:galleria value="#{imagesView.images}" var="image" panelWidth="1150" panelHeight="313" showCaption="true">
-                        <p:graphicImage   library="images" name="#{image}"/>
+                        <p:graphicImage library="images" name="#{image}" width="1150" height="313"/>
                     </p:galleria>
                     <!-- FIN GALERIA DE FOTOS-->
 
@@ -115,17 +114,27 @@
                             <!-- Aca tenemos contenido de imagenes en forma de catalogo -->
 
                             <div class="row">
-                                <h:form>
-                                    <c:forEach var="item" items="#{juegoController.items}" > 
+
+                                <c:forEach var="item" items="#{juegoController.items}" >
+                                    <h:form>
                                         <div class="col-sm-6 col-md-3">
-                                            <img src="public/img/lateral.png" data-toggle="modal" class="thumbnail" data-target="#myModal"  width="200" height="200"></img>
-                                            <!-- INICIO Contenido del modal de la foto-->
-                                <p:button outcome="compra/Detalle" value="Comprar" style="margin-right:20px; color:#ffffff" >
-                                            </p:button> 
+                                            <img src="#{item.src}" value="Effects" onclick="PF('#{item.nombre}').show();" class="thumbnail"  width="200" height="200"></img>
+                                            <!-- INICIO Contenido del modal de la foto-->                                           
+                                            <p:dialog header="#{item.nombre}" widgetVar="#{item.nombre}" showEffect="explode" hideEffect="bounce" height="100">
+                                                <div>
+                                                    <h:outputText value="#{item.modoJuego}" />  
+                                                </div>
+                                                <div>
+                                                    <p:commandLink action="#{juegoController.llevarJuego(item.id)}" ajax="false" style="margin-right:20px; color:#000000">
+                                                        <h:outputText value="Comprar" />
+                                                    </p:commandLink>
+                                                </div>
+                                            </p:dialog>
                                             <!-- FIN Contenido del modal de la foto-->
                                         </div>
-                                    </c:forEach>
-                                </h:form>
+                                    </h:form>
+                                </c:forEach>
+
                             </div>
 
                         </div>

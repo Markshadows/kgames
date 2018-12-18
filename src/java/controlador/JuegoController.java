@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name ="juegoController")
+@ManagedBean(name = "juegoController")
 @SessionScoped
 public class JuegoController implements Serializable {
 
@@ -53,6 +53,15 @@ public class JuegoController implements Serializable {
     public Juego prepareCreate() {
         selected = new Juego();
         initializeEmbeddableKey();
+        return selected;
+    }
+
+    public String llevarJuego(int id) {
+        selected = getFacade().find(id);
+        return "compra/Detalle";
+    }
+    public Juego llevarJuego2(int id) {
+        selected = getFacade().find(id);
         return selected;
     }
 

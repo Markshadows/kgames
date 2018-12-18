@@ -21,42 +21,39 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Miguel
+ * @author Desconocido
  */
 @Entity
 @Table(name = "entrega")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Entrega.findAll", query = "SELECT e FROM Entrega e")
-    , @NamedQuery(name = "Entrega.findById", query = "SELECT e FROM Entrega e WHERE e.id = :id")})
+    , @NamedQuery(name = "Entrega.findByIdkeyCod", query = "SELECT e FROM Entrega e WHERE e.idkeyCod = :idkeyCod")})
 public class Entrega implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id_keyCod")
+    private Integer idkeyCod;
     @JoinColumn(name = "id_pago", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Compra idPago;
-    @JoinColumn(name = "id_keyCod", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Codigo idkeyCod;
 
     public Entrega() {
     }
 
-    public Entrega(Integer id) {
-        this.id = id;
+    public Entrega(Integer idkeyCod) {
+        this.idkeyCod = idkeyCod;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdkeyCod() {
+        return idkeyCod;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdkeyCod(Integer idkeyCod) {
+        this.idkeyCod = idkeyCod;
     }
 
     public Compra getIdPago() {
@@ -67,18 +64,10 @@ public class Entrega implements Serializable {
         this.idPago = idPago;
     }
 
-    public Codigo getIdkeyCod() {
-        return idkeyCod;
-    }
-
-    public void setIdkeyCod(Codigo idkeyCod) {
-        this.idkeyCod = idkeyCod;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idkeyCod != null ? idkeyCod.hashCode() : 0);
         return hash;
     }
 
@@ -89,7 +78,7 @@ public class Entrega implements Serializable {
             return false;
         }
         Entrega other = (Entrega) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idkeyCod == null && other.idkeyCod != null) || (this.idkeyCod != null && !this.idkeyCod.equals(other.idkeyCod))) {
             return false;
         }
         return true;
@@ -97,7 +86,7 @@ public class Entrega implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Entrega[ id=" + id + " ]";
+        return "entidades.Entrega[ idkeyCod=" + idkeyCod + " ]";
     }
     
 }

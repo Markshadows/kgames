@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Miguel
+ * @author Desconocido
  */
 @Entity
 @Table(name = "codigo")
@@ -47,8 +47,6 @@ public class Codigo implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "codigo")
     private String codigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idkeyCod")
-    private List<Entrega> entregaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigo")
     private List<Juego> juegoList;
 
@@ -78,15 +76,6 @@ public class Codigo implements Serializable {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    @XmlTransient
-    public List<Entrega> getEntregaList() {
-        return entregaList;
-    }
-
-    public void setEntregaList(List<Entrega> entregaList) {
-        this.entregaList = entregaList;
     }
 
     @XmlTransient

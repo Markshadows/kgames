@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Miguel
+ * @author Desconocido
  */
 @Entity
 @Table(name = "juego")
@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Juego.findByNombre", query = "SELECT j FROM Juego j WHERE j.nombre = :nombre")
     , @NamedQuery(name = "Juego.findByPegi", query = "SELECT j FROM Juego j WHERE j.pegi = :pegi")
     , @NamedQuery(name = "Juego.findByModoJuego", query = "SELECT j FROM Juego j WHERE j.modoJuego = :modoJuego")
-    , @NamedQuery(name = "Juego.findByPrecio", query = "SELECT j FROM Juego j WHERE j.precio = :precio")})
+    , @NamedQuery(name = "Juego.findByPrecio", query = "SELECT j FROM Juego j WHERE j.precio = :precio")
+    , @NamedQuery(name = "Juego.findBySrc", query = "SELECT j FROM Juego j WHERE j.src = :src")
+    , @NamedQuery(name = "Juego.findByDescripcion", query = "SELECT j FROM Juego j WHERE j.descripcion = :descripcion")})
 public class Juego implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,6 +65,16 @@ public class Juego implements Serializable {
     @NotNull
     @Column(name = "precio")
     private int precio;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 200)
+    @Column(name = "src")
+    private String src;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 1000)
+    @Column(name = "descripcion")
+    private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "juego")
     private List<Compra> compraList;
     @JoinColumn(name = "codigo", referencedColumnName = "id")
@@ -79,12 +91,14 @@ public class Juego implements Serializable {
         this.id = id;
     }
 
-    public Juego(Integer id, String nombre, int pegi, String modoJuego, int precio) {
+    public Juego(Integer id, String nombre, int pegi, String modoJuego, int precio, String src, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.pegi = pegi;
         this.modoJuego = modoJuego;
         this.precio = precio;
+        this.src = src;
+        this.descripcion = descripcion;
     }
 
     public Integer getId() {
@@ -125,6 +139,22 @@ public class Juego implements Serializable {
 
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient

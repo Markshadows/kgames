@@ -4,22 +4,26 @@ import entidades.Compra;
 import controlador.util.JsfUtil;
 import controlador.util.JsfUtil.PersistAction;
 import dao.CompraFacade;
+import entidades.Cliente;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("compraController")
+@ManagedBean(name = "compraController")
 @SessionScoped
 public class CompraController implements Serializable {
 
@@ -30,7 +34,18 @@ public class CompraController implements Serializable {
 
     public CompraController() {
     }
-
+    
+    @PostConstruct
+    public void init() {
+        selected = new Compra();
+        //initializeEmbeddableKey();
+    }
+    
+    public String llevarJuego(int id) {
+        selected = getFacade().find(id);
+        return "compra/Detalle";
+    }
+    
     public Compra getSelected() {
         return selected;
     }
@@ -56,10 +71,13 @@ public class CompraController implements Serializable {
     }
 
     public void create() {
+        
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CompraCreated"));
+        System.out.println(selected.toString());
         if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
+            items = null;    // Invalidate list of items to trigger re-query.            
         }
+
     }
 
     public void update() {

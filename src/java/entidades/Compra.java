@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Miguel
+ * @author Desconocido
  */
 @Entity
 @Table(name = "compra")
@@ -190,7 +190,10 @@ public class Compra implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Compra[ id=" + id + " ]";
+        return "Compra{" + "id=" + id + ", precio=" + precio + ", fecha=" + fecha + ", total=" + total + ", estado=" + estado + ", cliente=" + cliente + ", juego=" + juego + ", pago=" + pago + ", entregaList=" + entregaList + '}';
     }
+
+   
+   
     
 }
