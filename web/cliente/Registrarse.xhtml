@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <div class="container mt-5">
+            <p:growl id="growl" showDetail="true" sticky="true" />  
+            <h:form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputNombre">Nombre</label>
+                        <p:inputText type="text" styleClass="form-control" id="inputNombre" placeholder="Nombre" value="#{clienteController.selected.nombre}" requiredMessage="#{bundle.CreateClienteRequiredMessage_nombre}"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputApellido">Apellido</label>
+                        <p:inputText type="text" styleClass="form-control" id="inputApellido" placeholder="Apellido" value="#{clienteController.selected.apellido}" requiredMessage="#{bundle.CreateClienteRequiredMessage_apellido}"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Email</label>
+                        <p:inputText type="email" styleClass="form-control" id="inputEmail4" placeholder="Email" value="#{clienteController.selected.correo}" requiredMessage="#{bundle.CreateClienteRequiredMessage_nombre}"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <p:outputLabel value="Nacimiento" for="nacimiento"/>
+                        <p:calendar id="nacimiento" pattern="MM/dd/yyyy" value="#{clienteController.selected.nacimiento}" showOn="button"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDireccion">Dirección</label>
+                    <p:inputText type="text" styleClass="form-control" id="inputDireccion" placeholder="Concha y Toro" value="#{clienteController.selected.direccion}"/>
+                </div>
+                <div class="form-group col-md-4">
+                    <p:outputLabel for="pago" value="Tipo de pago" />
+                    <p:selectOneMenu id="pago" value="#{clienteController.selected.pago}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_pago}">
+                        <f:selectItems value="#{pagoController.items}"
+                                           var="pagoItem"
+                                           itemLabel="#{pagoItem.descripcion}"
+                                           itemValue="#{pagoItem}"/>
+                        </p:selectOneMenu>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputNombreUsuario">Nombre de usuario</label>
+                        <p:inputText type="text" styleClass="form-control" id="inputNombreUsuario" placeholder="Nombre333" value="#{clienteController.selected.username}"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputContrasena">Contraseña</label>
+                        <p:inputText type="password" styleClass="form-control" id="inputContrasena" placeholder="***********" value="#{clienteController.selected.password}"/>
+                    </div>
+                </div>
+                <p:commandButton action="#{clienteController.create}" value="Registrarse" update="growl"/>
+            </h:form>
+        </div>
+    </h:body>
+
+</html>
+

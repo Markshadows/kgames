@@ -10,17 +10,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("pagoController")
-@SessionScoped
+@ManagedBean(name="pagoController")
+@RequestScoped
 public class PagoController implements Serializable {
 
     @EJB
@@ -29,6 +30,11 @@ public class PagoController implements Serializable {
     private Pago selected;
 
     public PagoController() {
+    }
+    
+    @PostConstruct
+    public void init(){
+        items = null;
     }
 
     public Pago getSelected() {
@@ -47,12 +53,6 @@ public class PagoController implements Serializable {
 
     private PagoFacade getFacade() {
         return ejbFacade;
-    }
-
-    public Pago prepareCreate() {
-        selected = new Pago();
-        initializeEmbeddableKey();
-        return selected;
     }
 
     public void create() {
