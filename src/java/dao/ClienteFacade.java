@@ -9,6 +9,7 @@ import entidades.Cliente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,20 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
 
     public ClienteFacade() {
         super(Cliente.class);
+    }
+    
+    public Cliente login(String username, String password) {
+        Cliente cl;
+        Query query = em.createQuery("SELECT u FROM Cliente u WHERE u.username = :nombre and u.password = :contrasena");
+        query.setParameter("nombre", username);
+        query.setParameter("contrasena", password);
+        if (query.getResultList().isEmpty()) {
+            cl = null;
+        } else {
+            cl = (Cliente) query.getSingleResult();
+        }
+        
+        return cl;
     }
     
 }
